@@ -1,1 +1,1 @@
-include ':sample', ':lib.permission', ':j.permission'
+include ':sample', ':epermission', ':j.permission'
