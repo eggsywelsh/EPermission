@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'com.novoda.bintray-release'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -7,3 +8,10 @@ dependencies {
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
+publish {
+    userOrg = 'eggsy'
+    groupId = 'com.eggsy'
+    artifactId = 'epermission-processor'
+    publishVersion = '1.0.1'
+}
