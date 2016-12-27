@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 24
@@ -35,9 +35,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-//publish {
-//    userOrg = 'eggsy'
-//    groupId = 'com.eggsy'
-//    artifactId = 'epermission'
-//    publishVersion = '1.0.1'
-//}
+publish {
+    userOrg = 'eggsy'
+    groupId = 'com.eggsy'
+    artifactId = 'epermission'
+    publishVersion = '1.0.1'
+}
