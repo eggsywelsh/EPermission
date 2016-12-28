@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">EPermission</string>
+    <string name="app_name">EPermission</string>i
+    <string name="label_activity_permission">在activity中请求权限</string>
+    <string name="label_fragment_permission">请求fragment权限</string>
+    <string name="label_request_multi_permission">一次请求多个权限</string>
+    <string name="label_request_sdcard_permission">请求读写sdcard权限</string>
 </resources>

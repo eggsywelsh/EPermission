@@ -79,12 +79,12 @@ public class PermissionProcessor extends AbstractProcessor {
         if (!processAnnotations(roundEnv, PermissionRationale.class)) return false;
 
         if (mPermissionMap != null && mPermissionMap.size() > 0) {
-            for(String key : mPermissionMap.keySet()){
+            for (String key : mPermissionMap.keySet()) {
                 PermissionAssist proxyInfo = mPermissionMap.get(key);
                 try {
                     JavaFile javaFile = JavaFile.builder(proxyInfo.getPackageName(), proxyInfo.generateJavaCode()).build();
                     javaFile.writeTo(filer);
-                }catch (IOException e){
+                } catch (IOException e) {
                     error(e.getMessage());
                 }
             }
@@ -115,15 +115,15 @@ public class PermissionProcessor extends AbstractProcessor {
             if (annotation instanceof PermissionGrant) {
                 int requestCode = ((PermissionGrant) annotation).requestCode();
                 String requestPermission = ((PermissionGrant) annotation).requestPermission();
-                proxyInfo.putGrantMethod(requestPermission+"_"+requestCode, annotatedMethod.getSimpleName().toString());
+                proxyInfo.putGrantMethod(requestCode, requestPermission, annotatedMethod.getSimpleName().toString());
             } else if (annotation instanceof PermissionDeny) {
                 int requestCode = ((PermissionDeny) annotation).requestCode();
                 String requestPermission = ((PermissionDeny) annotation).requestPermission();
-                proxyInfo.putDenyMethod(requestPermission+"_"+requestCode, annotatedMethod.getSimpleName().toString());
+                proxyInfo.putDenyMethod(requestCode, requestPermission, annotatedMethod.getSimpleName().toString());
             } else if (annotation instanceof PermissionRationale) {
                 int requestCode = ((PermissionRationale) annotation).requestCode();
                 String requestPermission = ((PermissionRationale) annotation).requestPermission();
-                proxyInfo.putRationalMethod(requestPermission+"_"+requestCode, annotatedMethod.getSimpleName().toString());
+                proxyInfo.putRationalMethod(requestCode, requestPermission, annotatedMethod.getSimpleName().toString());
             } else {
                 error(annotatedElement, "%s not support .", clazz.getSimpleName());
                 return false;

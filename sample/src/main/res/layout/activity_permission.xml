@@ -11,18 +11,18 @@
     tools:context="com.eggsy.epermission.MainActivity">
 
     <Button
-        android:id="@+id/btn_next_activity"
+        android:id="@+id/btn_request_single_permission"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_activity_permission"
+        android:text="@string/label_request_sdcard_permission"
         />
 
     <Button
-        android:id="@+id/btn_next_fragment"
+        android:id="@+id/btn_request_multi_permission"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_next_activity"
-        android:text="@string/label_fragment_permission"
+        android:layout_below="@id/btn_request_single_permission"
+        android:text="@string/label_request_multi_permission"
         />
 
 </RelativeLayout>

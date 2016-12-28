@@ -31,10 +31,10 @@ public class EPermission {
 
     public static boolean shouldShowRequestPermissionRationale(Activity activity, int requestCode, String permission) {
         PermissionProxy proxy = findPermissionProxy(activity);
-        if (!proxy.needShowRationale(getRequestSign(requestCode, permission))) return false;
+        if (!proxy.needShowRationale(requestCode, permission)) return false;
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
                 permission)) {
-            proxy.rationale(activity, getRequestSign(requestCode, permission));
+            proxy.rationale(activity, requestCode, permission);
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public class EPermission {
     private static void doExecuteSuccess(Object activity, int requestCode, String... permissions) {
         if (permissions != null && permissions.length > 0) {
             for (String permission : permissions) {
-                findPermissionProxy(activity).grant(activity, getRequestSign(requestCode, permission));
+                findPermissionProxy(activity).grant(activity, requestCode, permission);
             }
         }
     }
@@ -92,7 +92,7 @@ public class EPermission {
     private static void doExecuteFail(Object activity, int requestCode, String... permissions) {
         if (permissions != null && permissions.length > 0) {
             for (String permission : permissions) {
-                findPermissionProxy(activity).deny(activity, getRequestSign(requestCode, permission));
+                findPermissionProxy(activity).deny(activity, requestCode, permission);
             }
         }
     }
@@ -119,11 +119,11 @@ public class EPermission {
             }
         }
         if (grantPermissions != null && grantPermissions.size() > 0) {
-            doExecuteSuccess(obj, requestCode,grantPermissions.toArray(new String[deniedPermissions.size()]));
+            doExecuteSuccess(obj, requestCode, grantPermissions.toArray(new String[deniedPermissions.size()]));
         }
 
         if (deniedPermissions != null && deniedPermissions.size() > 0) {
-            doExecuteFail(obj, requestCode,deniedPermissions.toArray(new String[deniedPermissions.size()]));
+            doExecuteFail(obj, requestCode, deniedPermissions.toArray(new String[deniedPermissions.size()]));
         }
     }
 

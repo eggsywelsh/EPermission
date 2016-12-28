@@ -8,12 +8,11 @@ import java.lang.annotation.Target;
 /**
  * Created by eggsy on 16-12-9.
  */
-
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.SOURCE)
 public @interface PermissionRationale {
 
-    int requestCode();
+    int requestCode() default Integer.MIN_VALUE;
 
     String requestPermission();
 }

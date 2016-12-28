@@ -6,12 +6,12 @@ package com.eggsy.permission.internal;
 
 public interface PermissionProxy<T> {
 
-    void grant(T source, String requestCode);
+    void grant(T source, int requestCode, String requestPermission);
 
-    void deny(T source, String requestCode);
+    void deny(T source, int requestCode, String requestPermission);
 
-    void rationale(T source, String requestCode);
+    void rationale(T source, int requestCode, String requestPermission);
 
-    boolean needShowRationale(String requestCode);
+    boolean needShowRationale(int requestCode, String requestPermission);
 
 }

@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface PermissionDeny
 {
-    int requestCode();
+    int requestCode() default Integer.MIN_VALUE;
 
     String requestPermission();
 }
