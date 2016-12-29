@@ -40,6 +40,17 @@ public class EPermission {
         return false;
     }
 
+    public static boolean shouldShowRequestPermissionRationale(Fragment fragment, int requestCode, String permission) {
+        PermissionProxy proxy = findPermissionProxy(fragment);
+        if (!proxy.needShowRationale(requestCode, permission)) return false;
+        if (ActivityCompat.shouldShowRequestPermissionRationale(fragment.getActivity(),
+                permission)) {
+            proxy.rationale(fragment, requestCode, permission);
+            return true;
+        }
+        return false;
+    }
+
     @TargetApi(value = Build.VERSION_CODES.M)
     private static void _requestPermissions(Object object, int requestCode, String... permissions) {
         if (!Utils.isOverMarshmallow()) {
@@ -126,9 +137,4 @@ public class EPermission {
             doExecuteFail(obj, requestCode, deniedPermissions.toArray(new String[deniedPermissions.size()]));
         }
     }
-
-    private static String getRequestSign(int requestCode, String requestPermission) {
-        return requestPermission + "_" + requestCode;
-    }
-
 }

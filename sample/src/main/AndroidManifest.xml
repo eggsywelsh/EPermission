@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PermissionActivity"></activity>
+        <activity android:name=".PermissionFragmentActivity"></activity>
     </application>
 
 </manifest>

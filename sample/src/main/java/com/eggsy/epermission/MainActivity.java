@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(nextActivity);
                 break;
             case R.id.btn_next_fragment:
-
+                Intent nextFragmentActivity = new Intent(MainActivity.this,PermissionFragmentActivity.class);
+                startActivity(nextFragmentActivity);
                 break;
             default:
                 break;

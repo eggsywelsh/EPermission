@@ -27,7 +27,7 @@ public class PermissionAssist {
     private TypeElement typeElement;
 
     /**
-     * 存放requestCode与原始方法名的对应关系
+     * save request permission and request code's relationship
      */
     private HashMap<String, HashMap<Integer, ProxyMethodInfo>> grantMethodMap = new HashMap<>();
     private HashMap<String, HashMap<Integer, ProxyMethodInfo>> denyMethodMap = new HashMap<>();
@@ -41,6 +41,9 @@ public class PermissionAssist {
     private final static String RATIONALE_METHOD = "rationale";
     private final static String CHECK_RATIONALE_METHOD = "needShowRationale";
 
+    /**
+     * proxy method info
+     */
     private class ProxyMethodInfo {
         String requestPermission;
 
@@ -58,7 +61,7 @@ public class PermissionAssist {
         String packageName = packageElement.getQualifiedName().toString();
         //classname
         classElement.getSimpleName();
-        String className = classElement.getSimpleName().toString(); // ClassValidator.getClassName(classElement, packageName);
+        String className = classElement.getSimpleName().toString();
         this.packageName = packageName;
         this.proxyClassSimpleName = className + "_" + SUFFIX;
     }
@@ -115,7 +118,7 @@ public class PermissionAssist {
     }
 
     /**
-     * 生成类对象
+     * create Class Object
      *
      * @return
      */
