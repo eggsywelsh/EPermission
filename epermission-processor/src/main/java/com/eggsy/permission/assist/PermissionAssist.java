@@ -145,151 +145,15 @@ public class PermissionAssist {
     }
 
     private MethodSpec generateGrantMethod() {
-        MethodSpec.Builder builder = MethodSpec.methodBuilder(GRANT_METHOD);
-        builder.addModifiers(Modifier.PUBLIC)
-                .addParameter(ParameterSpec.builder(TypeVariableName.get(typeElement.getSimpleName().toString()), "source").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("int"), "requestCode").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build())
-                .returns(void.class);
-
-        if (grantMethodMap != null && grantMethodMap.size() > 0) {
-            builder.beginControlFlow("switch(requestPermission)");
-
-            for (Map.Entry<String, HashMap<Integer, ProxyMethodInfo>> grantMethod : grantMethodMap.entrySet()) {
-                HashMap<Integer, ProxyMethodInfo> proxyMethods = grantMethod.getValue();
-                if (proxyMethods != null && proxyMethods.size() > 0) {
-                    String requestPermission = grantMethod.getKey();
-                    builder.beginControlFlow("case \"" + requestPermission + "\":");
-
-                    ProxyMethodInfo proxy = null;
-
-                    for (Map.Entry<Integer, ProxyMethodInfo> entry : proxyMethods.entrySet()) {
-                        ProxyMethodInfo proxyMethodInfo = entry.getValue();
-
-                        if (proxyMethodInfo.requestCode == DEFAULT_REQUEST_CODE) {
-                            proxy = proxyMethodInfo;
-                        }else{
-                            builder.beginControlFlow("if(requestCode==" + proxyMethodInfo.requestCode + ")");
-                            builder.addStatement("source." + proxyMethodInfo.methodName + "()");
-                            builder.addStatement("break");
-                            builder.endControlFlow();
-                        }
-                    }
-
-                    if (proxy != null && proxy.requestCode == DEFAULT_REQUEST_CODE) {
-                        builder.beginControlFlow("if(requestCode==" + proxy.requestCode + ")");
-                        builder.addStatement("source." + proxy.methodName + "()");
-                        builder.addStatement("break");
-                        builder.endControlFlow();
-                    }
-
-                    builder.endControlFlow();
-                }
-            }
-
-            builder.endControlFlow();
-        }
-
-        return builder.build();
+        return generateCommonMethod(GRANT_METHOD,grantMethodMap);
     }
 
     private MethodSpec generateDenyMethod() {
-        MethodSpec.Builder builder = MethodSpec.methodBuilder(DENY_METHOD);
-        builder.addModifiers(Modifier.PUBLIC)
-                .addParameter(ParameterSpec.builder(TypeVariableName.get(typeElement.getSimpleName().toString()), "source").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("int"), "requestCode").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build())
-                .returns(void.class);
-
-        if (denyMethodMap != null && denyMethodMap.size() > 0) {
-            builder.beginControlFlow("switch(requestPermission)");
-
-            for (Map.Entry<String, HashMap<Integer, ProxyMethodInfo>> grantMethod : denyMethodMap.entrySet()) {
-                HashMap<Integer, ProxyMethodInfo> proxyMethods = grantMethod.getValue();
-                if (proxyMethods != null && proxyMethods.size() > 0) {
-                    String requestPermission = grantMethod.getKey();
-                    builder.beginControlFlow("case \"" + requestPermission + "\":");
-
-                    ProxyMethodInfo proxy = null;
-
-                    for (Map.Entry<Integer, ProxyMethodInfo> entry : proxyMethods.entrySet()) {
-                        ProxyMethodInfo proxyMethodInfo = entry.getValue();
-
-                        if (proxyMethodInfo.requestCode == DEFAULT_REQUEST_CODE) {
-                            proxy = proxyMethodInfo;
-                        }else{
-                            builder.beginControlFlow("if(requestCode==" + proxyMethodInfo.requestCode + ")");
-                            builder.addStatement("source." + proxyMethodInfo.methodName + "()");
-                            builder.addStatement("break");
-                            builder.endControlFlow();
-                        }
-                    }
-
-                    if (proxy != null && proxy.requestCode == DEFAULT_REQUEST_CODE) {
-                        builder.beginControlFlow("if(requestCode==" + proxy.requestCode + ")");
-                        builder.addStatement("source." + proxy.methodName + "()");
-                        builder.addStatement("break");
-                        builder.endControlFlow();
-                    }
-
-                    builder.endControlFlow();
-                }
-            }
-
-            builder.endControlFlow();
-        }
-
-        return builder.build();
+        return generateCommonMethod(DENY_METHOD,denyMethodMap);
     }
 
     private MethodSpec generateRationaleMethod() {
-        MethodSpec.Builder builder = MethodSpec.methodBuilder(RATIONALE_METHOD);
-        builder.addModifiers(Modifier.PUBLIC)
-                .addParameter(ParameterSpec.builder(TypeVariableName.get(typeElement.getSimpleName().toString()), "source").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("int"), "requestCode").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build())
-                .returns(void.class);
-
-        if (rationaleMap != null && rationaleMap.size() > 0) {
-            builder.beginControlFlow("switch(requestPermission)");
-
-            for (Map.Entry<String, HashMap<Integer, ProxyMethodInfo>> grantMethod : rationaleMap.entrySet()) {
-                HashMap<Integer, ProxyMethodInfo> proxyMethods = grantMethod.getValue();
-                if (proxyMethods != null && proxyMethods.size() > 0) {
-                    String requestPermission = grantMethod.getKey();
-                    builder.beginControlFlow("case \"" + requestPermission + "\":");
-
-                    ProxyMethodInfo proxy = null;
-
-                    for (Map.Entry<Integer, ProxyMethodInfo> entry : proxyMethods.entrySet()) {
-                        ProxyMethodInfo proxyMethodInfo = entry.getValue();
-
-                        if (proxyMethodInfo.requestCode == DEFAULT_REQUEST_CODE) {
-                            proxy = proxyMethodInfo;
-                        }else{
-                            builder.beginControlFlow("if(requestCode==" + proxyMethodInfo.requestCode + ")");
-                            builder.addStatement("source." + proxyMethodInfo.methodName + "()");
-                            builder.addStatement("break");
-                            builder.endControlFlow();
-                        }
-                    }
-
-                    if (proxy != null && proxy.requestCode == DEFAULT_REQUEST_CODE) {
-                        builder.beginControlFlow("if(requestCode==" + proxy.requestCode + ")");
-                        builder.addStatement("source." + proxy.methodName + "()");
-                        builder.addStatement("break");
-                        builder.endControlFlow();
-                    }
-
-                    builder.endControlFlow();
-                }
-            }
-
-            builder.endControlFlow();
-        }
-
-        return builder.build();
-
+        return generateCommonMethod(RATIONALE_METHOD,rationaleMap);
     }
 
     private MethodSpec generateNeedRationaleMethod() {
@@ -300,42 +164,118 @@ public class PermissionAssist {
                 .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build())
         ;
         if (rationaleMap != null && rationaleMap.size() > 0) {
+            builder.addStatement("boolean result = false");
             builder.beginControlFlow("switch(requestPermission)");
 
             for (Map.Entry<String, HashMap<Integer, ProxyMethodInfo>> grantMethod : rationaleMap.entrySet()) {
                 HashMap<Integer, ProxyMethodInfo> proxyMethods = grantMethod.getValue();
                 if (proxyMethods != null && proxyMethods.size() > 0) {
                     String requestPermission = grantMethod.getKey();
+
                     builder.beginControlFlow("case \"" + requestPermission + "\":");
 
-                    ProxyMethodInfo proxy = null;
+                    ProxyMethodInfo defaultProxyMethodInfo = null;
 
+                    boolean isFirst = true;
                     for (Map.Entry<Integer, ProxyMethodInfo> entry : proxyMethods.entrySet()) {
                         ProxyMethodInfo proxyMethodInfo = entry.getValue();
 
-                        if (proxyMethodInfo.requestCode == DEFAULT_REQUEST_CODE) {
-                            proxy = proxyMethodInfo;
+                        if(proxyMethodInfo.requestCode == DEFAULT_REQUEST_CODE) {
+                            defaultProxyMethodInfo = proxyMethodInfo;
                         }else{
-                            builder.beginControlFlow("if(requestCode==" + proxyMethodInfo.requestCode + ")");
-                            builder.addStatement("return true");
-                            builder.endControlFlow();
+                            generateJudgeRationaleRequestCode(builder,proxyMethodInfo,false,isFirst);
+                            isFirst = false;
                         }
                     }
-
-                    if (proxy != null && proxy.requestCode == DEFAULT_REQUEST_CODE) {
-                        builder.beginControlFlow("if(requestCode==" + proxy.requestCode + ")");
-                        builder.addStatement("return true");
-                        builder.endControlFlow();
+                    if(defaultProxyMethodInfo!=null){
+                        generateJudgeRationaleRequestCode(builder,defaultProxyMethodInfo,true,isFirst);
                     }
 
+                    builder.addStatement("break");
                     builder.endControlFlow();
                 }
             }
 
             builder.endControlFlow();
         }
-        builder.addStatement("return false");
+        builder.addStatement("return result");
         return builder.build();
+    }
+
+    private MethodSpec generateCommonMethod(String methodName,HashMap<String, HashMap<Integer, ProxyMethodInfo>> methodMap){
+        MethodSpec.Builder builder = MethodSpec.methodBuilder(methodName);
+        builder.addModifiers(Modifier.PUBLIC)
+                .addParameter(ParameterSpec.builder(TypeVariableName.get(typeElement.getSimpleName().toString()), "source").build())
+                .addParameter(ParameterSpec.builder(TypeVariableName.get("int"), "requestCode").build())
+                .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build())
+                .returns(void.class);
+
+        if (methodMap != null && methodMap.size() > 0) {
+            builder.beginControlFlow("switch(requestPermission)");
+
+            for (Map.Entry<String, HashMap<Integer, ProxyMethodInfo>> grantMethod : methodMap.entrySet()) {
+                HashMap<Integer, ProxyMethodInfo> proxyMethods = grantMethod.getValue();
+                if (proxyMethods != null && proxyMethods.size() > 0) {
+                    String requestPermission = grantMethod.getKey();
+                    builder.beginControlFlow("case \"" + requestPermission + "\":");
+
+                    ProxyMethodInfo defaultProxyMethodInfo = null;
+
+                    boolean isFirst = true;
+                    for (Map.Entry<Integer, ProxyMethodInfo> entry : proxyMethods.entrySet()) {
+                        ProxyMethodInfo proxyMethodInfo = entry.getValue();
+
+                        if(proxyMethodInfo.requestCode == DEFAULT_REQUEST_CODE){
+                            defaultProxyMethodInfo = proxyMethodInfo;
+                        }else{
+                            generateJudgeRequestCode(builder,proxyMethodInfo,false,isFirst);
+                            isFirst = false;
+                        }
+                    }
+                    if(defaultProxyMethodInfo!=null){
+                        generateJudgeRequestCode(builder,defaultProxyMethodInfo,true,isFirst);
+                    }
+                    builder.addStatement("break");
+                    builder.endControlFlow();
+                }
+            }
+
+            builder.endControlFlow();
+        }
+
+        return builder.build();
+    }
+
+    private void generateJudgeRequestCode(MethodSpec.Builder builder,ProxyMethodInfo proxyMethodInfo,boolean isDefault,boolean isFirst){
+        if(isDefault){
+            if(isFirst){
+                builder.addStatement("source." + proxyMethodInfo.methodName + "()");
+            }else{
+                builder.beginControlFlow("else");
+                builder.addStatement("source." + proxyMethodInfo.methodName + "()");
+                builder.endControlFlow();
+            }
+        }else{
+            builder.beginControlFlow((isFirst ? "" : "else ") + "if(requestCode==" + proxyMethodInfo.requestCode + ")");
+            builder.addStatement("source." + proxyMethodInfo.methodName + "()");
+            builder.endControlFlow();
+        }
+    }
+
+    private void generateJudgeRationaleRequestCode(MethodSpec.Builder builder,ProxyMethodInfo proxyMethodInfo,boolean isDefault,boolean isFirst){
+        if(isDefault){
+            if(isFirst){
+                builder.addStatement("result = true");
+            }else{
+                builder.beginControlFlow("else");
+                builder.addStatement("result = true");
+                builder.endControlFlow();
+            }
+        }else{
+            builder.beginControlFlow((isFirst ? "" : "else ") + "if(requestCode==" + proxyMethodInfo.requestCode + ")");
+            builder.addStatement("result = true");
+            builder.endControlFlow();
+        }
     }
 
 }
