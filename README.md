@@ -21,11 +21,6 @@ To determine whether the authority has been applied for, return true that applie
 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 ```
 
-To determine whether the last application permission was denied by the user
-```
-EPermission.shouldShowRequestPermissionRationale(context, REQUEST_SINGLE_PERMISSON, Manifest.permission.READ_EXTERNAL_STORAGE)
-```
-
 Apply for a single permission
 ```
 EPermission.requestPermissions(context, REQUEST_SINGLE_PERMISSON, Manifest.permission.READ_EXTERNAL_STORAGE);
