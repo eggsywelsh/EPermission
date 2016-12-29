@@ -341,7 +341,9 @@ no matter which requestCode you used to request permission CAMERA,the granted ca
 
 #### Proguard
 ----------------------------------------------
+```
 -dontwarn com.eggsy.permission.**
 -keep class com.eggsy.permission.** {*;}
 -keep interface com.eggsy.permission.** { *; }
 -keep class **_Proxy { *; }
+```
