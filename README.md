@@ -1,7 +1,7 @@
 
 ### EPermission
 ----------------------------------------------
-Base on Java Annotation Processor technology,generate the permission heloer code when compile the code
+Base on Java Annotation Processor technology,generate the permission helper code when compile the code to simplfy the permission apply process
 
 #### Import
 ----------------------------------------------
