@@ -5,15 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.FrameLayout;
 
 /**
  * Created by eggsy on 16-12-29.
  */
 
 public class PermissionFragmentActivity extends FragmentActivity {
-
-    FrameLayout mFlContainer;
 
     PermissionFragment mFragment;
 
@@ -27,8 +24,6 @@ public class PermissionFragmentActivity extends FragmentActivity {
     }
 
     private void initView() {
-//        mFlContainer = (FrameLayout)findViewById(R.id.fl_container);
-
         FragmentManager fm = getSupportFragmentManager();
         if(fm != null){
             FragmentTransaction aboutTrans = fm.beginTransaction();

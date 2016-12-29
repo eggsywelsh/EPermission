@@ -1,1 +1,1 @@
-include ':sample', ':epermission', ':epermission-processor'
+include ':sample', ':epermission', ':epermission-processor', ':epermission-annotations'

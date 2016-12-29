@@ -25,5 +25,5 @@ task clean(type: Delete) {
 }
 
 ext{
-    publicVersion="1.0.3"
+    publicVersion="1.0.4"
 }

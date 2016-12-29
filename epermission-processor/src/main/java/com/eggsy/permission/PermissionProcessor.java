@@ -1,8 +1,8 @@
 package com.eggsy.permission;
 
-import com.eggsy.permission.annotation.PermissionDeny;
-import com.eggsy.permission.annotation.PermissionGrant;
-import com.eggsy.permission.annotation.PermissionRationale;
+import com.permission.annotation.PermissionDeny;
+import com.permission.annotation.PermissionGrant;
+import com.permission.annotation.PermissionRationale;
 import com.eggsy.permission.assist.PermissionAssist;
 import com.eggsy.permission.util.ClassValidator;
 import com.squareup.javapoet.JavaFile;

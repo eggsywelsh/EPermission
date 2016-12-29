@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.eggsy.permission.EPermission;
-import com.eggsy.permission.annotation.PermissionDeny;
-import com.eggsy.permission.annotation.PermissionGrant;
-import com.eggsy.permission.annotation.PermissionRationale;
+import com.permission.annotation.PermissionDeny;
+import com.permission.annotation.PermissionGrant;
+import com.permission.annotation.PermissionRationale;
 
 /**
  * Created by eggsy on 16-12-29.
