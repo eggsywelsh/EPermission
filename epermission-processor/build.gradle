@@ -13,5 +13,5 @@ publish {
     userOrg = 'eggsy'
     groupId = 'com.eggsy'
     artifactId = 'epermission-processor'
-    publishVersion = '1.0.1'
+    publishVersion = rootProject.ext.publicVersion
 }

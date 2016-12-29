@@ -9,7 +9,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0.1"
+        versionName rootProject.ext.publicVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -39,5 +39,5 @@ publish {
     userOrg = 'eggsy'
     groupId = 'com.eggsy'
     artifactId = 'epermission'
-    publishVersion = '1.0.1'
+    publishVersion = rootProject.ext.publicVersion
 }
