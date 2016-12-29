@@ -312,7 +312,7 @@ public class PermissionFragment extends Fragment implements View.OnClickListener
 
 ```
 
-#### explain
+#### Explain
 ----------------------------------------------
 Annotation of  `@PermissionGrant`,`@PermissionDeny` and `@PermissionRationale` has defaule `requestCode` property,if you don't set the requestCode,the annotation corresponding to method can be handle most requestCode of permission,just like below:
 ```
@@ -337,7 +337,7 @@ Annotation of  `@PermissionGrant`,`@PermissionDeny` and `@PermissionRationale` h
     }
 ```
 
-no matter which your requestCode use to request permission CAMERA,the granted callback will invode `grantCameraPermission()`
+no matter which requestCode you used to request permission CAMERA,the granted callback will invode grantCameraPermission()
 
 #### Proguard
 ----------------------------------------------
