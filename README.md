@@ -8,9 +8,9 @@ Base on Java Annotation Processor technology,generate the permission helper code
 in you module's build.gradle,add below dependencies
 ```
 dependencies {
-    annotationProcessor 'com.eggsy:epermission-processor:1.1.1'
-    compile 'com.eggsy:epermission:1.1.1'
-    compile 'com.eggsy:epermission-annotations:1.1.1'
+    annotationProcessor 'com.eggsy:epermission-processor:1.1.3'
+    compile 'com.eggsy:epermission:1.1.3'
+    compile 'com.eggsy:epermission-annotations:1.1.3'
 }
 ```
 
