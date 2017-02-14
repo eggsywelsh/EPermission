@@ -164,10 +164,11 @@ public class PermissionAssist {
         builder.addModifiers(Modifier.PUBLIC)
                 .returns(TypeName.BOOLEAN)
                 .addParameter(ParameterSpec.builder(TypeVariableName.get("int"), "requestCode").build())
-                .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build())
-        ;
+                .addParameter(ParameterSpec.builder(TypeVariableName.get("String"), "requestPermission").build());
+
+        builder.addStatement("boolean result = false");
+
         if (rationaleMap != null && rationaleMap.size() > 0) {
-            builder.addStatement("boolean result = false");
             builder.beginControlFlow("switch(requestPermission)");
 
             for (Map.Entry<String, HashMap<Integer, ProxyMethodInfo>> grantMethod : rationaleMap.entrySet()) {
