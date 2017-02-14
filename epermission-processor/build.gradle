@@ -11,7 +11,7 @@ sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 publish {
-    userOrg = 'eggsy'
+    userOrg = 'greateeggsy'
     groupId = 'com.eggsy'
     artifactId = 'epermission-processor'
     publishVersion = rootProject.ext.publicVersion

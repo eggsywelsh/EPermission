@@ -9,7 +9,7 @@ sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 publish {
-    userOrg = 'eggsy'
+    userOrg = 'greateeggsy'
     groupId = 'com.eggsy'
     artifactId = 'epermission-annotations'
     publishVersion = rootProject.ext.publicVersion
