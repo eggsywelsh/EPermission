@@ -1,4 +1,3 @@
-
 ### EPermission
 ----------------------------------------------
 Base on Java Annotation Processor technology,generate the permission helper code when compile the code to simplfy the permission apply process
@@ -342,3 +341,6 @@ no matter which requestCode you used to request permission CAMERA,the granted ca
 -keep interface com.eggsy.permission.** { *; }
 -keep class **_Proxy { *; }
 ```
+
+#### ReadMe Update Time
+chenyongkang update the ReadMe document at 2020/02/20 in Fuzhou.
